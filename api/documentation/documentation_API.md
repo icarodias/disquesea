@@ -1,44 +1,6 @@
 # Disque Sea API
 
 ------
-Container com mysql:
-Com docker instalado:
-
-Baixar a imagem latest do mysql:
-~~~bashs
-docker pull mysql install
-~~~
-Criar container do banco de dados do a imagem latest do mysql:
-~~~bashs
-docker run -e MYSQL_ROOT_PASSWORD=<<YOUR_PASSWORD>>--name <<YOUR_CONTAINER_NAME>> -d -p 3306:3306 mysql
-~~~
-
-Ao terminar de trabalhar na aplicação, lembrar de pausar o container:
-~~~bashs
-docker stop <<CONTAINER_ID>>
-~~~
-
-Quando quiser voltar a usar o banco de dados criado no container basta iniciar o container novamente:
-~~~bashs
-docker start <<CONTAINER_ID>>
-~~~
-
-Comandos úteis:
-
-Listar todos os containers ativos
-~~~bashs
-docker container ls
-~~~
-
-Listar todos os containers ativos e inativos
-~~~bashs
-docker container ls -a
-~~~
-
-
------
-
-
 
 Esta api é responsável pelo backend da aplicação DisqueSea
 
@@ -87,7 +49,7 @@ Esta api é responsável pelo backend da aplicação DisqueSea
             "category": "MEAT",
             "scale": "UNIT"
         }
-    },
+    }
  ] 
 ~~~
 
@@ -170,7 +132,7 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
         "status": "CRITICAL",
         "category": "OTHER"
 
-    },
+    }
  ] 
 ~~~
 
@@ -234,7 +196,7 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
         "status": "CRITICAL",
         "category": "OTHER"
 
-    },
+    }
  ] 
 ~~~
 
