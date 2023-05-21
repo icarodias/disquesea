@@ -1,5 +1,8 @@
-package com.disquesea.disqueseaapi.domain.model.enums;
+package com.disquesea.disqueseaapi.domain.model;
 
+import com.disquesea.disqueseaapi.domain.model.enums.Category;
+import com.disquesea.disqueseaapi.domain.model.enums.Scale;
+import com.disquesea.disqueseaapi.domain.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
