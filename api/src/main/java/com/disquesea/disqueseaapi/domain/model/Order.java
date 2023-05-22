@@ -24,7 +24,7 @@ public class Order {
 
     private BigDecimal price;
 
-    private LocalDate date;
+    private LocalDate createdAt;
 
     private Boolean isSell;
 
@@ -32,6 +32,9 @@ public class Order {
 
     @ManyToOne
     private Product product;
+
+    @Transient
+    private Long productId;
 
     @Override
     public boolean equals(Object o) {
