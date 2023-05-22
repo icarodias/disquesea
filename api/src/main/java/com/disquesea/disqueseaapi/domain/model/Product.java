@@ -44,22 +44,13 @@ public class Product {
         return setAmountNumericalScale(amount);
     }
 
-    public void addAmount(BigDecimal amount) {
-        changeAmount(amount, true);
-        updateStatus();
-    }
-
-    public void removeAmount(BigDecimal amount) {
-        changeAmount(amount, false);
-        updateStatus();
-    }
-
-    private void changeAmount(BigDecimal value, boolean isIncrement) {
-        BigDecimal finalAmount = (isIncrement) ? this.amount.add(value) : this.amount.subtract(value);
+    public void changeAmount(BigDecimal value, boolean isReduction) {
+        BigDecimal finalAmount = (isReduction) ? this.amount.subtract(value) : this.amount.add(value);
 
         finalAmount = setAmountNumericalScale(finalAmount);
 
         this.amount = finalAmount;
+        updateStatus();
     }
 
     private BigDecimal setAmountNumericalScale(BigDecimal value) {
