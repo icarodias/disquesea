@@ -158,7 +158,7 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
 
 |Endpoint||
 |----|---:|
-|PATCH|/products/{id}|
+|PUT|/products/{id}|
 
 #### **request**
 ~~~json
