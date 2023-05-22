@@ -24,6 +24,8 @@ public class OrderService {
 
     private final ProductService productService;
 
+    private final WalletService walletService;
+
     public Page<Order> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
@@ -32,16 +34,20 @@ public class OrderService {
     public Order create(Order order) {
         final boolean isSell = order.getIsSell();
 
+        if( !isSell && isNull(order.getPrice())){
+            throw new RuntimeException("When order is a buy, the price is obligated");
+        }
+
         final Long productId = order.getProductId();
         Product product = productService.findById(productId);
 
         order.setCreatedAt(LocalDate.now());
         calculatePrice(order, product);
 
-        product.changeAmount(order.getAmount(), isSell);
-        productService.save(product);
+        setProductAfterUpdate(order, product, isSell);
 
-        order.setProduct(product);
+        updateWallet(order, isSell);
+
         return repository.save(order);
     }
 
@@ -54,6 +60,21 @@ public class OrderService {
         }
     }
 
+    private void setProductAfterUpdate(Order order, Product product, boolean isSell) {
+        product.changeAmount(order.getAmount(), isSell);
+        productService.save(product);
+        order.setProduct(product);
+    }
+
+    private void updateWallet(Order order, boolean isSell) {
+        final BigDecimal value = order.getPrice();
+
+        if (isSell) {
+            walletService.incoming(value);
+        } else {
+            walletService.expense(value);
+        }
+    }
 
     public void deleteAll() {
         repository.deleteAll();
