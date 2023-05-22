@@ -33,6 +33,9 @@ public class Order {
     @ManyToOne
     private Product product;
 
+    @Transient
+    private Long productId;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
