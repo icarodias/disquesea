@@ -24,7 +24,7 @@ public class Order {
 
     private BigDecimal price;
 
-    private LocalDate date;
+    private LocalDate createdAt;
 
     private Boolean isSell;
 
