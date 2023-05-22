@@ -33,6 +33,7 @@ public class Product {
     private Category category;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "product_scale")
     private Scale scale;
 
     @Setter(AccessLevel.NONE)
@@ -68,7 +69,7 @@ public class Product {
                  : value.setScale(0, RoundingMode.HALF_DOWN);
     }
 
-    private void updateStatus() {
+    public void updateStatus() {
         this.status = Status.getCorrectStatus(amount);
     }
 
