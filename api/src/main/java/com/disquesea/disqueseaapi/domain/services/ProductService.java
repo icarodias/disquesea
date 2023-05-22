@@ -18,7 +18,7 @@ public class ProductService {
         return repository.findAll(pageable);
     }
 
-    private Product full(long id) {
+    public Product findById(long id) {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Product not found."));
     }
 
@@ -27,12 +27,12 @@ public class ProductService {
         return save(product);
     }
 
-    private Product save(Product product) {
+    public Product save(Product product) {
         return repository.save(product);
     }
 
     public Product update(long id, Product source) {
-        Product target = full(id);
+        Product target = findById(id);
 
         String[] ignoredProperties = {"id", "status"};
         BeanUtils.copyProperties(source, target, ignoredProperties);
@@ -41,7 +41,7 @@ public class ProductService {
     }
 
     public void delete(long id) {
-        final Product product = full(id);
+        final Product product = findById(id);
 
         repository.delete(product);
     }
