@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Getter
 @Entity
@@ -22,4 +23,11 @@ public class Wallet {
     public void reset() {
         this.value = BigDecimal.ZERO;
     }
+
+    public void update(BigDecimal value, boolean isIncoming) {
+        BigDecimal total = (isIncoming) ? this.value.add(value) : this.value.subtract(value);
+
+        this.value = total.setScale(2, RoundingMode.HALF_UP);
+    }
+
 }
