@@ -92,6 +92,14 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
 }
 ~~~
 
+### 3. Reset Orders
+
+Endpoint responsável por deletar todas os pedidos realizados.
+
+|Endpoint||
+|----|---:|
+|DELETE|/orders|
+
 
 ## Product API
 
