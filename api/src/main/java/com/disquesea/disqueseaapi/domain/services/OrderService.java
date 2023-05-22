@@ -4,9 +4,15 @@ package com.disquesea.disqueseaapi.domain.services;
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.respositories.OrderRepository;
+import com.disquesea.disqueseaapi.specifications.OrderSpecification;
+import com.disquesea.disqueseaapi.specifications.ProductSpecification;
+import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
+import com.disquesea.disqueseaapi.utils.DateCustomUtils;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,8 +32,19 @@ public class OrderService {
 
     private final WalletService walletService;
 
-    public Page<Order> findAll(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<Order> findAll(OrderCriteriaDTO criteriaDTO, Pageable pageable) {
+        final LocalDate fromDate = DateCustomUtils.fromString(criteriaDTO.getFromDate());
+
+        final LocalDate toDate = DateCustomUtils.fromString(criteriaDTO.getToDate());
+
+        Specification<Order> specification = Specification
+                .where(OrderSpecification.sellIs(criteriaDTO.getIsSell()))
+                .and(OrderSpecification.productIdIs(criteriaDTO.getProductId()))
+                .and(OrderSpecification.productCategoryIs(criteriaDTO.getProductCategory()))
+                .and(OrderSpecification.createdAfter(fromDate))
+                .and(OrderSpecification.createdBefore(toDate));
+
+        return repository.findAll(specification, pageable);
     }
 
     @Transactional
