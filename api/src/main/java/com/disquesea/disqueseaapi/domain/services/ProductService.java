@@ -1,5 +1,6 @@
 package com.disquesea.disqueseaapi.domain.services;
 
+import com.disquesea.disqueseaapi.domain.exceptions.ResourceNotFoundException;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.respositories.ProductRepository;
 import com.disquesea.disqueseaapi.specifications.ProductSpecification;
@@ -29,7 +30,8 @@ public class ProductService {
     }
 
     public Product findById(long id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Product not found."));
+        final String message = String.format("Product of id %d not found", id);
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(message));
     }
 
     public Product create(Product product) {
