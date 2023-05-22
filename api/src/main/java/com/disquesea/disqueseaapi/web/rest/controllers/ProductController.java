@@ -2,6 +2,7 @@ package com.disquesea.disqueseaapi.web.rest.controllers;
 
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.services.ProductService;
+import com.disquesea.disqueseaapi.specifications.dto.ProductCriteriaDTO;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
@@ -19,8 +20,8 @@ public class ProductController {
 
     @GetMapping(params = {"page"})
     @ResponseStatus(HttpStatus.OK)
-    public Page<Product> findAll(@ParameterObject Pageable pageable) {
-        return service.findAll(pageable);
+    public Page<Product> findAll(@ParameterObject Pageable pageable, @ParameterObject ProductCriteriaDTO criteriaDTO) {
+        return service.findAll(criteriaDTO, pageable);
     }
 
     @PostMapping

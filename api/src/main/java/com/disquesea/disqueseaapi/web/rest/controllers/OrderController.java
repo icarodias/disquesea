@@ -2,6 +2,8 @@ package com.disquesea.disqueseaapi.web.rest.controllers;
 
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.domain.services.OrderService;
+import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
@@ -18,8 +20,8 @@ public class OrderController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<Order> findAll(@ParameterObject Pageable pageable) {
-        return service.findAll(pageable);
+    public Page<Order> findAll(@ParameterObject Pageable pageable, @ParameterObject @Valid OrderCriteriaDTO criteriaDTO) {
+        return service.findAll(criteriaDTO, pageable);
     }
 
     @PostMapping

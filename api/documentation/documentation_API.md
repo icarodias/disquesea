@@ -14,9 +14,10 @@ Esta api é responsável pelo backend da aplicação DisqueSea
 
 #### **query params**
 * isSell
-* status
 * fromDate
 * toDate
+* productId
+* productCategory
 
 
 #### **response**
