@@ -1,7 +1,9 @@
 package com.disquesea.disqueseaapi.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -24,8 +26,10 @@ public class Order {
 
     private BigDecimal price;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
+    @NotNull
     private Boolean isSell;
 
     private String description;
