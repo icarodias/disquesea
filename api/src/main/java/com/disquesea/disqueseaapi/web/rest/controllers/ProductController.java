@@ -1,6 +1,6 @@
 package com.disquesea.disqueseaapi.web.rest.controllers;
 
-import com.disquesea.disqueseaapi.domain.mappers.ProductMapper;
+import com.disquesea.disqueseaapi.web.rest.controllers.mappers.ProductMapper;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.services.ProductService;
 import com.disquesea.disqueseaapi.specifications.dto.ProductCriteriaDTO;
@@ -34,16 +34,16 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product create(@RequestBody @Valid CreateProductDTO productDTO) {
+    public ProductResponseDTO create(@RequestBody @Valid CreateProductDTO productDTO) {
         Product product = mapper.toDomain(productDTO);
-        return service.create(product);
+        return mapper.map(service.create(product));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Product update(@PathVariable long id,@RequestBody @Valid UpdateProductDTO productDTO) {
+    public ProductResponseDTO update(@PathVariable long id,@RequestBody @Valid UpdateProductDTO productDTO) {
         Product product = mapper.toDomain(productDTO);
-        return service.update(id, product);
+        return mapper.map(service.update(id, product));
     }
 
     @DeleteMapping("/{id}")
