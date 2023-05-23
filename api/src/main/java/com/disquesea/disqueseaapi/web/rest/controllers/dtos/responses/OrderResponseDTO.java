@@ -1,6 +1,5 @@
 package com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses;
 
-import com.disquesea.disqueseaapi.domain.model.Product;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -15,9 +14,9 @@ public class OrderResponseDTO {
 
     private BigDecimal price;
 
-    private LocalDate createdAt;
-
     private Boolean isSell;
+
+    private LocalDate createdAt;
 
     private String description;
 
