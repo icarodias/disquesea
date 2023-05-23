@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.domain.mappers;
+package com.disquesea.disqueseaapi.web.rest.controllers.mappers;
 
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.OrderResponseDTO;
