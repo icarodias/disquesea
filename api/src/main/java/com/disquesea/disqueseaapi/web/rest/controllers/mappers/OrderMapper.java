@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderMapper extends AbstractMapper<Order, OrderResponseDTO> {
 
-    public OrderMapper(ModelMapper modelMapper, Class<Order> domainType, Class<OrderResponseDTO> transferObjectType){
-        super(modelMapper, domainType, transferObjectType);
+    public OrderMapper(ModelMapper modelMapper){
+        super(modelMapper);
     }
 }

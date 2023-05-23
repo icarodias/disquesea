@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductMapper extends AbstractMapper<Product, ProductResponseDTO> {
 
-    public ProductMapper(ModelMapper mapper, Class<Product> domainType, Class<ProductResponseDTO> transferObjectType) {
-        super(mapper, domainType, transferObjectType);
+    public ProductMapper(ModelMapper modelMapper) {
+        super(modelMapper);
     }
 
 }

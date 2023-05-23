@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WalletMapper extends AbstractMapper<Wallet, WalletResponseDTO> {
 
-    public WalletMapper(ModelMapper mapper, Class<Wallet> domainType, Class<WalletResponseDTO> transferObjectType){
-        super(mapper, domainType, transferObjectType);
+    public WalletMapper(ModelMapper modelMapper){
+        super(modelMapper);
     }
 }
