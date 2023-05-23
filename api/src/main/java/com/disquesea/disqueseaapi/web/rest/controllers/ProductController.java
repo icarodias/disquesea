@@ -1,8 +1,13 @@
 package com.disquesea.disqueseaapi.web.rest.controllers;
 
+import com.disquesea.disqueseaapi.domain.mappers.ProductMapper;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.services.ProductService;
 import com.disquesea.disqueseaapi.specifications.dto.ProductCriteriaDTO;
+import com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests.CreateProductDTO;
+import com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests.UpdateProductDTO;
+import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.ProductResponseDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
@@ -18,21 +23,26 @@ public class ProductController {
 
     private final ProductService service;
 
+    private final ProductMapper mapper;
+
     @GetMapping(params = {"page"})
     @ResponseStatus(HttpStatus.OK)
-    public Page<Product> findAll(@ParameterObject Pageable pageable, @ParameterObject ProductCriteriaDTO criteriaDTO) {
-        return service.findAll(criteriaDTO, pageable);
+    public Page<ProductResponseDTO> findAll(@ParameterObject Pageable pageable,
+                                            @ParameterObject @Valid ProductCriteriaDTO criteriaDTO) {
+        return service.findAll(criteriaDTO, pageable).map(mapper::map);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product create(@RequestBody Product product) {
+    public Product create(@RequestBody @Valid CreateProductDTO productDTO) {
+        Product product = mapper.toDomain(productDTO);
         return service.create(product);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Product update(@PathVariable long id,@RequestBody Product product) {
+    public Product update(@PathVariable long id,@RequestBody @Valid UpdateProductDTO productDTO) {
+        Product product = mapper.toDomain(productDTO);
         return service.update(id, product);
     }
 
