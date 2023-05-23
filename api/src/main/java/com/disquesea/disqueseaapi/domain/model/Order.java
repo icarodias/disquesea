@@ -25,16 +25,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Positive
     private BigDecimal amount;
 
-    @Positive
     private BigDecimal price;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
-    @NotNull
     private Boolean isSell;
 
     private String description;
