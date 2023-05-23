@@ -3,6 +3,9 @@ package com.disquesea.disqueseaapi.web.rest.controllers;
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.domain.services.OrderService;
 import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
+import com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests.CreateOrderDTO;
+import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.OrderResponseDTO;
+import com.disquesea.disqueseaapi.web.rest.controllers.mappers.OrderMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
@@ -18,16 +21,20 @@ public class OrderController {
 
     private final OrderService service;
 
+    private final OrderMapper mapper;
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<Order> findAll(@ParameterObject Pageable pageable, @ParameterObject @Valid OrderCriteriaDTO criteriaDTO) {
-        return service.findAll(criteriaDTO, pageable);
+    public Page<OrderResponseDTO> findAll(@ParameterObject Pageable pageable,
+                                          @ParameterObject @Valid OrderCriteriaDTO criteriaDTO) {
+        return service.findAll(criteriaDTO, pageable).map(mapper::map);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Order create(@RequestBody @Valid Order order) {
-        return service.create(order);
+    public OrderResponseDTO create(@RequestBody @Valid CreateOrderDTO orderDTO) {
+        final Order order = mapper.toDomain(orderDTO);
+        return mapper.map(service.create(order));
     }
 
     @DeleteMapping
