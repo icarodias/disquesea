@@ -1,15 +1,15 @@
 package com.disquesea.disqueseaapi.domain.services;
 
 
+import com.disquesea.disqueseaapi.domain.exceptions.BusinessException;
+import com.disquesea.disqueseaapi.domain.exceptions.ResourceNotFoundException;
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.respositories.OrderRepository;
 import com.disquesea.disqueseaapi.specifications.OrderSpecification;
-import com.disquesea.disqueseaapi.specifications.ProductSpecification;
 import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
 import com.disquesea.disqueseaapi.utils.DateCustomUtils;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -51,12 +51,9 @@ public class OrderService {
     public Order create(Order order) {
         final boolean isSell = order.getIsSell();
 
-        if( !isSell && isNull(order.getPrice())){
-            throw new RuntimeException("When order is a buy, the price is obligated");
-        }
+        checkOrderIntegrity(order);
 
-        final Long productId = order.getProductId();
-        Product product = productService.findById(productId);
+        Product product = getOrderProduct(order);
 
         order.setCreatedAt(LocalDate.now());
         calculatePrice(order, product);
@@ -66,6 +63,20 @@ public class OrderService {
         updateWallet(order, isSell);
 
         return repository.save(order);
+    }
+
+    private void checkOrderIntegrity(Order order) {
+        if( !order.getIsSell() && isNull(order.getPrice())){
+            throw new BusinessException("When order is a buy, the price is obligated");
+        }
+    }
+
+    private Product getOrderProduct(Order order) {
+        try{
+            return productService.findById(order.getProductId());
+        } catch (ResourceNotFoundException ex) {
+            throw new BusinessException(ex.getMessage());
+        }
     }
 
     private void calculatePrice(Order order, Product product) {

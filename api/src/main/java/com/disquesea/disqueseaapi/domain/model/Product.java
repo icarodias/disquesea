@@ -4,7 +4,13 @@ import com.disquesea.disqueseaapi.domain.model.enums.Category;
 import com.disquesea.disqueseaapi.domain.model.enums.Scale;
 import com.disquesea.disqueseaapi.domain.model.enums.Status;
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,14 +26,17 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String name;
 
     @Setter(AccessLevel.NONE)
+    @PositiveOrZero
     protected BigDecimal amount = BigDecimal.ZERO;
 
+    @Positive
     private BigDecimal price;
 
-    private Boolean isVisibleInCatalog;
+    private Boolean isVisibleInCatalog = false;
 
     @Enumerated(EnumType.STRING)
     private Category category;

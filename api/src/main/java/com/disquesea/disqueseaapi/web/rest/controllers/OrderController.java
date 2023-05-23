@@ -26,7 +26,7 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Order create(@RequestBody Order order) {
+    public Order create(@RequestBody @Valid Order order) {
         return service.create(order);
     }
 
@@ -36,5 +36,3 @@ public class OrderController {
     }
 
 }
-
-

@@ -1,11 +1,14 @@
 package com.disquesea.disqueseaapi.domain.services;
 
+import com.disquesea.disqueseaapi.domain.exceptions.EntityIsBeingUsedException;
+import com.disquesea.disqueseaapi.domain.exceptions.ResourceNotFoundException;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.respositories.ProductRepository;
 import com.disquesea.disqueseaapi.specifications.ProductSpecification;
 import com.disquesea.disqueseaapi.specifications.dto.ProductCriteriaDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -29,7 +32,8 @@ public class ProductService {
     }
 
     public Product findById(long id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Product not found."));
+        final String message = String.format("Product of id %d not found", id);
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(message));
     }
 
     public Product create(Product product) {
@@ -53,6 +57,11 @@ public class ProductService {
     public void delete(long id) {
         final Product product = findById(id);
 
-        repository.delete(product);
+        try {
+            repository.delete(product);
+        } catch (DataIntegrityViolationException ex){
+            final String message = String.format("Product of id %d can not be removed because it is being used.", id);
+            throw new EntityIsBeingUsedException(message);
+        }
     }
 }

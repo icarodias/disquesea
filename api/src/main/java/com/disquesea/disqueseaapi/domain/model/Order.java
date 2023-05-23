@@ -1,7 +1,11 @@
 package com.disquesea.disqueseaapi.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,6 +16,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "tb_orders")
 @RequiredArgsConstructor
 public class Order {
@@ -20,12 +25,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Positive
     private BigDecimal amount;
 
+    @Positive
     private BigDecimal price;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
+    @NotNull
     private Boolean isSell;
 
     private String description;
