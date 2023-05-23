@@ -1,8 +1,8 @@
 package com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
-import lombok.NonNull;
 
 import java.math.BigDecimal;
 
@@ -15,7 +15,7 @@ public class CreateOrderDTO {
     @Positive
     private BigDecimal price;
 
-    @NonNull
+    @NotNull
     private Boolean isSell;
 
     private String description;
