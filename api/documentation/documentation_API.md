@@ -106,6 +106,10 @@ Endpoint responsável por deletar todas os pedidos realizados.
 
 ### 1. Find all products
 
+Endpoint responsável por buscar todos os produtos.
+* Os filtros são somados, ou seja, caso seja inserido filtro de  _scale_ e _name_ então vai buscar pelos producos que contenham essas duas propriedas juntas.
+
+
 |Endpoint||
 |----|---:|
 |GET|/products|
@@ -129,7 +133,6 @@ Endpoint responsável por deletar todas os pedidos realizados.
         "scale": "KILOGRAM",
         "status": "AVAILABLE",
         "category": "SHRIMP"
-
     },
     {
         "id": 2,
@@ -140,12 +143,13 @@ Endpoint responsável por deletar todas os pedidos realizados.
         "scale": "UNIT",
         "status": "CRITICAL",
         "category": "OTHER"
-
     }
  ] 
 ~~~
 
 ### 2. Adding product 
+
+Endpoint responsável por adicionar um produto ao estoque.
 
 |Endpoint||
 |----|---:|
@@ -153,17 +157,36 @@ Endpoint responsável por deletar todas os pedidos realizados.
 
 #### **request**
 ~~~json
+{
+    "name": "Camarão",
+    "amount": 30.000,
+    "price": 55.00,
+    "isVisibleInCatalog": true,
+    "scale": "KILOGRAM",
+    "category": "SHRIMP"
+}
+~~~
+
+
+#### **response**
+~~~json
+ [
     {
+        "id": 20,
         "name": "Camarão",
         "amount": 30.000,
         "price": 55.00,
         "isVisibleInCatalog": true,
         "scale": "KILOGRAM",
+        "status": "AVAILABLE",
         "category": "SHRIMP"
     }
+ ]
 ~~~
 
 ### 3. Update product
+
+Endpoint responsável por atualizar produto.
 
 |Endpoint||
 |----|---:|
@@ -193,23 +216,15 @@ Endpoint responsável por deletar todas os pedidos realizados.
         "scale": "KILOGRAM",
         "status": "AVAILABLE",
         "category": "SHRIMP"
-
-    },
-    {
-        "id": 2,
-        "name": "Doce de Leite",
-        "amount": 3,
-        "price": 15.00,
-        "isVisibleInCatalog": true,
-        "scale": "UNIT",
-        "status": "CRITICAL",
-        "category": "OTHER"
-
     }
- ] 
+ ]
 ~~~
 
 ### 3. Delete product
+
+Endpoint responsável por deletar um produto. 
+
+* Produto só pode ser deletado se não existir nenhuma ordem que tenha utilizado ele.
 
 |Endpoint||
 |----|---:|
@@ -219,6 +234,8 @@ Endpoint responsável por deletar todas os pedidos realizados.
 ## Wallet API
 
 ### 1. Get Wallet Value
+
+Endpoint responsável por obter o valor da carteira.
 
 |Endpoint||
 |----|---:|
@@ -232,6 +249,8 @@ Endpoint responsável por deletar todas os pedidos realizados.
 ~~~
 
 ### 2. Reset Wallet
+
+Endpoint responsável por zerar a carteira.
 
 |Endpoint||
 |----|---:|
