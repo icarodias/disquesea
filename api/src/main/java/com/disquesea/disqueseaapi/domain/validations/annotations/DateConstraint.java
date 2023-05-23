@@ -1,5 +1,6 @@
-package com.disquesea.disqueseaapi.domain.validations;
+package com.disquesea.disqueseaapi.domain.validations.annotations;
 
+import com.disquesea.disqueseaapi.domain.validations.DateValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

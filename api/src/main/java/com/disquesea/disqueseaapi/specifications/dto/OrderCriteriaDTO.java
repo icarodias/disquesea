@@ -1,7 +1,7 @@
 package com.disquesea.disqueseaapi.specifications.dto;
 
 import com.disquesea.disqueseaapi.domain.model.enums.Category;
-import com.disquesea.disqueseaapi.domain.validations.DateConstraint;
+import com.disquesea.disqueseaapi.domain.validations.annotations.DateConstraint;
 import lombok.Data;
 
 @Data
