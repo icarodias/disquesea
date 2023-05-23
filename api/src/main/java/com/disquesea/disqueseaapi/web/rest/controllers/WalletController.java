@@ -22,7 +22,7 @@ public class WalletController {
         return mapper.map(service.obtain());
     }
 
-    @PostMapping
+    @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void reset() {
         service.reset();
