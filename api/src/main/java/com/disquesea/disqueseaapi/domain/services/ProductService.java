@@ -48,7 +48,7 @@ public class ProductService {
     public Product update(long id, Product source) {
         Product target = findById(id);
 
-        String[] ignoredProperties = {"id", "status"};
+        String[] ignoredProperties = {"id", "status", "amount"};
         BeanUtils.copyProperties(source, target, ignoredProperties);
 
         return save(target);
