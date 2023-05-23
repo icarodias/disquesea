@@ -58,6 +58,8 @@ Esta api é responsável pelo backend da aplicação DisqueSea
 
 Endpoint responsável por cadastar uma venda ou um abastencimento de algum produto do estoque.
 
+- Caso não exista em estoque a quantidade requerida no pedido, a ordem não é realizada.
+
 - Caso o preço não seja informado no payload e seja uma venda, então o preço será calculado automaticamente pela aplicação (quantidade multiplicado pelo preço do produto)
 
 |Endpoint||
@@ -95,16 +97,18 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
 
 ### 3. Reset Orders
 
-Endpoint responsável por deletar todas os pedidos realizados.
+Endpoint responsável por deletar todos os pedidos realizados.
 
 |Endpoint||
 |----|---:|
 |DELETE|/orders|
 
-
 ## Product API
 
 ### 1. Find all products
+
+Endpoint responsável por buscar todos os produtos.
+- Os filtros são somados, ou seja, caso seja inserido filtro de  _scale_ e _name_ então vai buscar pelos producos que contenham essas duas propriedas juntas.
 
 |Endpoint||
 |----|---:|
@@ -126,10 +130,9 @@ Endpoint responsável por deletar todas os pedidos realizados.
         "amount": 30.000,
         "price": 55.00,
         "isVisibleInCatalog": true,
-        "category": "SHRIMP",
         "scale": "KILOGRAM",
-        "status": "AVAILABLE"
-
+        "status": "AVAILABLE",
+        "category": "SHRIMP"
     },
     {
         "id": 2,
@@ -137,15 +140,16 @@ Endpoint responsável por deletar todas os pedidos realizados.
         "amount": 3,
         "price": 15.00,
         "isVisibleInCatalog": true,
-        "category": "OTHER",
         "scale": "UNIT",
-        "status": "CRITICAL"
-
+        "status": "CRITICAL",
+        "category": "OTHER"
     }
  ] 
 ~~~
 
 ### 2. Adding product 
+
+Endpoint responsável por adicionar um produto ao estoque.
 
 |Endpoint||
 |----|---:|
@@ -153,31 +157,50 @@ Endpoint responsável por deletar todas os pedidos realizados.
 
 #### **request**
 ~~~json
+{
+    "name": "Camarão",
+    "amount": 30.000,
+    "price": 55.00,
+    "isVisibleInCatalog": true,
+    "scale": "KILOGRAM",
+    "category": "SHRIMP"
+}
+~~~
+
+
+#### **response**
+~~~json
+ [
     {
+        "id": 20,
         "name": "Camarão",
         "amount": 30.000,
         "price": 55.00,
         "isVisibleInCatalog": true,
         "scale": "KILOGRAM",
+        "status": "AVAILABLE",
         "category": "SHRIMP"
     }
+ ]
 ~~~
 
 #### **response**
 ~~~json
-    {
-        "id":20,
-        "name": "Camarão",
-        "amount": 30.000,
-        "price": 55.00,
-        "isVisibleInCatalog": true,
-        "category": "SHRIMP",
-        "scale": "KILOGRAM",
-        "status": "AVAILABLE"
-    }
+{
+    "id":20,
+    "name": "Camarão",
+    "amount": 30.000,
+    "price": 55.00,
+    "isVisibleInCatalog": true,
+    "category": "SHRIMP",
+    "scale": "KILOGRAM",
+    "status": "AVAILABLE"
+}
 ~~~
 
 ### 3. Update product
+
+Endpoint responsável por atualizar produto.
 
 |Endpoint||
 |----|---:|
@@ -197,19 +220,23 @@ Endpoint responsável por deletar todas os pedidos realizados.
 #### **response**
 ~~~json
 {
-    "id":20,
+    "id": 20,
     "name": "Camarão",
     "amount": 30.000,
     "price": 55.00,
     "isVisibleInCatalog": true,
-    "category": "SHRIMP",
     "scale": "KILOGRAM",
-    "status": "AVAILABLE"
+    "status": "AVAILABLE",
+    "category": "SHRIMP"
 }
 ~~~
 
 
 ### 3. Delete product
+
+Endpoint responsável por deletar um produto. 
+
+- Produto só pode ser deletado se não existir nenhuma ordem que tenha utilizado ele.
 
 |Endpoint||
 |----|---:|
@@ -219,6 +246,8 @@ Endpoint responsável por deletar todas os pedidos realizados.
 ## Wallet API
 
 ### 1. Get Wallet Value
+
+Endpoint responsável por obter o valor da carteira.
 
 |Endpoint||
 |----|---:|
@@ -233,12 +262,13 @@ Endpoint responsável por deletar todas os pedidos realizados.
 
 ### 2. Reset Wallet
 
+Endpoint responsável por zerar a carteira.
+
 |Endpoint||
 |----|---:|
 |PUT|/wallet|
 
 ## Document API
-
 
 ### 1. Generate storage document
 
@@ -247,7 +277,6 @@ Endpoint responsável por gerar PDF contendo todos os produtos e suas caracterí
 |Endpoint||
 |----|---:|
 |GET|/products/download|
-
 
 ### 2. Generate catalog document
 
