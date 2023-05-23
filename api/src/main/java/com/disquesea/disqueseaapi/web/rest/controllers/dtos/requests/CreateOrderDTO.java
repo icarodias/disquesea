@@ -10,9 +10,11 @@ import java.math.BigDecimal;
 public class CreateOrderDTO {
 
     @Positive
+    @NotNull
     private BigDecimal amount;
 
     @Positive
+    @NotNull
     private BigDecimal price;
 
     @NotNull
@@ -20,6 +22,7 @@ public class CreateOrderDTO {
 
     private String description;
 
+    @NotNull
     private long productId;
 
 }
