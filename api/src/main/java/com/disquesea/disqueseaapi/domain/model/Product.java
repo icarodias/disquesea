@@ -28,8 +28,7 @@ public class Product {
 
     private String name;
 
-    @Setter(AccessLevel.NONE)
-    protected BigDecimal amount = BigDecimal.ZERO;
+    private BigDecimal amount = BigDecimal.ZERO;
 
     private BigDecimal price;
 
