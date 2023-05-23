@@ -58,6 +58,8 @@ Esta api é responsável pelo backend da aplicação DisqueSea
 
 Endpoint responsável por cadastar uma venda ou um abastencimento de algum produto do estoque.
 
+- Caso não exista em estoque a quantidade requerida no pedido, a ordem não é realizada.
+
 - Caso o preço não seja informado no payload e seja uma venda, então o preço será calculado automaticamente pela aplicação (quantidade multiplicado pelo preço do produto)
 
 |Endpoint||
@@ -95,20 +97,18 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
 
 ### 3. Reset Orders
 
-Endpoint responsável por deletar todas os pedidos realizados.
+Endpoint responsável por deletar todos os pedidos realizados.
 
 |Endpoint||
 |----|---:|
 |DELETE|/orders|
-
 
 ## Product API
 
 ### 1. Find all products
 
 Endpoint responsável por buscar todos os produtos.
-* Os filtros são somados, ou seja, caso seja inserido filtro de  _scale_ e _name_ então vai buscar pelos producos que contenham essas duas propriedas juntas.
-
+- Os filtros são somados, ou seja, caso seja inserido filtro de  _scale_ e _name_ então vai buscar pelos producos que contenham essas duas propriedas juntas.
 
 |Endpoint||
 |----|---:|
@@ -224,7 +224,7 @@ Endpoint responsável por atualizar produto.
 
 Endpoint responsável por deletar um produto. 
 
-* Produto só pode ser deletado se não existir nenhuma ordem que tenha utilizado ele.
+- Produto só pode ser deletado se não existir nenhuma ordem que tenha utilizado ele.
 
 |Endpoint||
 |----|---:|
@@ -258,7 +258,6 @@ Endpoint responsável por zerar a carteira.
 
 ## Document API
 
-
 ### 1. Generate storage document
 
 Endpoint responsável por gerar PDF contendo todos os produtos e suas características
@@ -266,7 +265,6 @@ Endpoint responsável por gerar PDF contendo todos os produtos e suas caracterí
 |Endpoint||
 |----|---:|
 |GET|/products/download|
-
 
 ### 2. Generate catalog document
 
