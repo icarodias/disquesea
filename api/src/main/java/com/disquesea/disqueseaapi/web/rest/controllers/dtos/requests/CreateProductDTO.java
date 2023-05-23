@@ -22,7 +22,7 @@ public class CreateProductDTO {
     @Positive
     private BigDecimal price;
 
-    private Boolean isVisibleInCatalog;
+    private Boolean isVisibleInCatalog = false;
 
     @NotNull
     private Scale scale;
