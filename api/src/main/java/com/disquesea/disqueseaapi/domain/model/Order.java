@@ -29,7 +29,6 @@ public class Order {
 
     private BigDecimal price;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
     private Boolean isSell;

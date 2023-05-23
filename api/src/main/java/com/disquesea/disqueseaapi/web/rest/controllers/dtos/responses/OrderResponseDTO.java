@@ -1,5 +1,6 @@
 package com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ public class OrderResponseDTO {
 
     private Boolean isSell;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
     private String description;
