@@ -28,11 +28,11 @@ Esta api é responsável pelo backend da aplicação DisqueSea
         "amount": 1.000,
         "price": 55.00,
         "isSell": true,
+        "createdAt": "02/05/2023",
         "description":"",
-        "date": "02/05/2023",
         "product": {
-            "id": 20,
             "name": "Camarão",
+            "price": 55.00,
             "category": "SHRIMP",
             "scale": "KILOGRAM"
         }
@@ -42,11 +42,11 @@ Esta api é responsável pelo backend da aplicação DisqueSea
         "amount": 10,
         "price": 150.00,
         "isSell": false,
+        "createdAt": "02/05/2023",
         "description":"Abastecendo estoque",
-        "date": "02/05/2023",
         "product": {
-            "id": 2,
             "name": "Doce de Leite",
+            "price": 15.00,
             "category": "MEAT",
             "scale": "UNIT"
         }
@@ -69,28 +69,28 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
 #### **request**
 ~~~json
 {
-    "isSell": true,
     "amount": 5,
-    "productId": 2,
+    "price": 75.00,
+    "isSell": true,
     "description": "",
-    "price": 75.00
+    "productId": 2
 }
 ~~~
 
 #### **response**
 ~~~json
 {
-    "id": 2,
-    "amount": 5,
-    "price": 75.00,
+    "id":1,
+    "amount": 1.000,
+    "price": 55.00,
     "isSell": true,
+    "createdAt": "02/05/2023",
     "description":"",
-    "date": "02/05/2023",
     "product": {
-        "id": 2,
-        "name": "Doce de Leite",
-        "category": "OTHER",
-        "scale": "UNIT"
+    "name": "Camarão",
+    "price": 55.00,
+    "category": "SHRIMP",
+    "scale": "KILOGRAM"
     }
 }
 ~~~
@@ -184,6 +184,20 @@ Endpoint responsável por adicionar um produto ao estoque.
  ]
 ~~~
 
+#### **response**
+~~~json
+{
+    "id":20,
+    "name": "Camarão",
+    "amount": 30.000,
+    "price": 55.00,
+    "isVisibleInCatalog": true,
+    "category": "SHRIMP",
+    "scale": "KILOGRAM",
+    "status": "AVAILABLE"
+}
+~~~
+
 ### 3. Update product
 
 Endpoint responsável por atualizar produto.
@@ -199,26 +213,24 @@ Endpoint responsável por atualizar produto.
     "price": 55.00,
     "isVisibleInCatalog": true,
     "scale": "KILOGRAM",
-    "status": "AVAILABLE",
     "category": "SHRIMP"
 }
 ~~~
 
 #### **response**
 ~~~json
- [
-    {
-        "id": 20,
-        "name": "Camarão",
-        "amount": 30.000,
-        "price": 55.00,
-        "isVisibleInCatalog": true,
-        "scale": "KILOGRAM",
-        "status": "AVAILABLE",
-        "category": "SHRIMP"
-    }
- ]
+{
+    "id": 20,
+    "name": "Camarão",
+    "amount": 30.000,
+    "price": 55.00,
+    "isVisibleInCatalog": true,
+    "scale": "KILOGRAM",
+    "status": "AVAILABLE",
+    "category": "SHRIMP"
+}
 ~~~
+
 
 ### 3. Delete product
 

@@ -26,14 +26,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String name;
 
-    @Setter(AccessLevel.NONE)
-    @PositiveOrZero
-    protected BigDecimal amount = BigDecimal.ZERO;
+    private BigDecimal amount = BigDecimal.ZERO;
 
-    @Positive
     private BigDecimal price;
 
     private Boolean isVisibleInCatalog = false;

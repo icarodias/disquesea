@@ -51,9 +51,9 @@ public class OrderService {
     public Order create(Order order) {
         final boolean isSell = order.getIsSell();
 
-        checkOrderIntegrity(order);
-
         Product product = getOrderProduct(order);
+
+        checkOrderIntegrity(order, product);
 
         order.setCreatedAt(LocalDate.now());
         calculatePrice(order, product);
@@ -65,10 +65,17 @@ public class OrderService {
         return repository.save(order);
     }
 
-    private void checkOrderIntegrity(Order order) {
+    private void checkOrderIntegrity(Order order, Product product) {
         if( !order.getIsSell() && isNull(order.getPrice())){
             throw new BusinessException("When order is a buy, the price is obligated");
         }
+
+        final boolean hasNotProductEnough = order.getAmount().compareTo(product.getAmount()) == 1;
+
+        if (hasNotProductEnough) {
+            throw new BusinessException("Not enough product");
+        }
+
     }
 
     private Product getOrderProduct(Order order) {
