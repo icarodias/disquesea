@@ -14,7 +14,6 @@ public class CreateOrderDTO {
     private BigDecimal amount;
 
     @Positive
-    @NotNull
     private BigDecimal price;
 
     @NotNull

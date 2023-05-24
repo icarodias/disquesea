@@ -38,6 +38,7 @@ public class OrderController {
     }
 
     @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void clear() {
         service.deleteAll();
     }
