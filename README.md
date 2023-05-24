@@ -10,10 +10,10 @@ comercializados possuem uma peculiaridade:
 >"A maioria dos produtos vendidos na Disque Sea são congelados e este é um dos motivos da necessidade de uma solução que controle o fluxo de estoque de forma precisa e automatizada."
 
 Diante deste cenário, eu irei desenvolver uma solução que consiga sanar a dor do cliente que é saber a quantidade
-de cada produto de forma rápida e confiável. O Disque Sea App é um [ERP](https://www.oracle.com/br/erp/what-is-erp/) que irá auxiliar no controle de estoque.
+de cada produto de forma rápida e confiável. O Disque Sea App é um <a href="https://www.oracle.com/br/erp/what-is-erp/" target="_blank">ERP</a> que irá auxiliar no controle de estoque.
 
 ### Escolha de tecnologias
-Irei desenvolver um [MVP (Minimal Viable Product)](https://pt.wikipedia.org/wiki/Produto_vi%C3%A1vel_m%C3%ADnimo) com as seguintes características:
+Irei desenvolver um <a href="https://pt.wikipedia.org/wiki/Produto_vi%C3%A1vel_m%C3%ADnimo" target="_blank">MVP (Minimal Viable Product)</a> com as seguintes características:
 O backend obedece o padrão de arquitetura MVC, ele fornecerá uma REST API para comunicação com o frontend da aplicação.
 
 A Stack utilizada para cosntrução do backend é Java 17, usarei o framework SpringBoot.
@@ -45,10 +45,10 @@ Operações
    * Catálogo: "gerar catálogo em PDF de divulgação"
 
 ### Disque Sea API - Links úteis
-* [Documentação da API](./api/documentation/documentation_API.md)
-* [Desenho da Arquitetura](./api/documentation/disque_sea_arquitetura.pdf)
-* [Desenho do UML](./api/documentation/disque_sea_UML.pdf)
-* [Uso de docker para criar um container com banco de dados MySQL](./api/documentation/docker_database_settings.md)
+* <a href="./api/documentation/documentation_API.md" target="_blank">Documentação da API</a>
+* <a href="./api/documentation/disque_sea_arquitetura.pdf" target="_blank">Desenho da Arquitetura</a>
+* <a href="./api/documentation/disque_sea_UML.pdf" target="_blank">Desenho do UML</a>
+* <a href="./api/documentation/docker_database_settings.md" target="_blank">Uso de docker para criar um container com banco de dados MySQL</a>
 
 #### Assuntos utilizados durante desenvolvimento do BACKEND
 
@@ -76,4 +76,4 @@ Operações
 
 12. Git / Github
 
-13. [Uso do Figma para desenho de arquitetura e UML](https://www.figma.com/file/MvplDvfvWeViwLAub2m6U2/DisqueSea---UML?type=whiteboard&node-id=0%3A1&t=vR7u9DwRb5Oyyp0r-1)
+13. <a href="https://www.figma.com/file/MvplDvfvWeViwLAub2m6U2/DisqueSea---UML?type=whiteboard&node-id=0%3A1&t=vR7u9DwRb5Oyyp0r-1" target="_blank">Uso do Figma para desenho de arquitetura e UML</a>
