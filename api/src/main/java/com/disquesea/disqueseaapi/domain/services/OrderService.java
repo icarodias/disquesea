@@ -115,6 +115,6 @@ public class OrderService {
     }
 
     public void deleteAll() {
-        repository.deleteAll();
+        repository.deleteAllOrders();
     }
 }
