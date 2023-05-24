@@ -266,7 +266,7 @@ Endpoint responsável por zerar a carteira.
 
 |Endpoint||
 |----|---:|
-|PUT|/wallet|
+|PUT|/wallet/reset|
 
 ## Document API
 

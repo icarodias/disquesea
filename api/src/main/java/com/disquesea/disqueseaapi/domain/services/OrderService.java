@@ -66,13 +66,16 @@ public class OrderService {
     }
 
     private void checkOrderIntegrity(Order order, Product product) {
-        if( !order.getIsSell() && isNull(order.getPrice())){
+        final boolean isBuy = !order.getIsSell();
+        final boolean hasNotPrice =  isNull(order.getPrice());
+
+        if (isBuy && hasNotPrice) {
             throw new BusinessException("When order is a buy, the price is obligated");
         }
 
         final boolean hasNotProductEnough = order.getAmount().compareTo(product.getAmount()) == 1;
 
-        if (hasNotProductEnough) {
+        if (!isBuy  && hasNotProductEnough) {
             throw new BusinessException("Not enough product");
         }
 
@@ -112,6 +115,6 @@ public class OrderService {
     }
 
     public void deleteAll() {
-        repository.deleteAll();
+        repository.deleteAllOrders();
     }
 }
