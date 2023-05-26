@@ -3,7 +3,7 @@ package com.disquesea.disqueseaapi.domain.exceptions;
 public class ResourceNotFoundException extends RuntimeException {
 
     public ResourceNotFoundException(){
-        super("Entity not found.");
+        super("Resource not found.");
     }
 
     public ResourceNotFoundException(String message) {

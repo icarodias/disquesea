@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.configuration;
+package com.disquesea.disqueseaapi.configuration.modelmapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
