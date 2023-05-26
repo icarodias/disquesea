@@ -20,6 +20,7 @@ public class CreateProductDTO {
     private BigDecimal amount;
 
     @Positive
+    @NotNull
     private BigDecimal price;
 
     private Boolean isVisibleInCatalog = false;
