@@ -83,4 +83,27 @@
             <append  value="engine innodb"/>
         </modifySql>
     </changeSet>
+
+    <changeSet id="3" author="icaro.dias">
+        <createTable tableName="tb_users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="ENUM('ADMIN','MANAGER','EMPLOYEE')">
+            </column>
+        </createTable>
+
+        <modifySql  dbms="mysql">
+            <append  value="engine innodb"/>
+        </modifySql>
+    </changeSet>
 </databaseChangeLog>
