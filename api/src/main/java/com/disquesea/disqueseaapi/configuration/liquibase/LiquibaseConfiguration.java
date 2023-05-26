@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.configuration;
+package com.disquesea.disqueseaapi.configuration.liquibase;
 
 
 import liquibase.integration.spring.SpringLiquibase;
