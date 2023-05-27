@@ -1,6 +1,6 @@
 package com.disquesea.disqueseaapi.security;
 
-import com.disquesea.disqueseaapi.security.filter.UserFilter;
+import com.disquesea.disqueseaapi.security.filter.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,6 +15,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration {
 
     private final String[] ALL_ROLES = {"ADMIN", "MANAGER","EMPLOYEE"};
+
+    private final JwtFilter jwtFilter;
+
+    public SecurityConfiguration(JwtFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -38,7 +44,7 @@ public class SecurityConfiguration {
 
         http.cors(Customizer.withDefaults());
 
-        http.addFilterBefore(new UserFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

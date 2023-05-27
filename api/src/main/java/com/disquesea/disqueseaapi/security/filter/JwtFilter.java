@@ -1,6 +1,6 @@
 package com.disquesea.disqueseaapi.security.filter;
 
-import com.disquesea.disqueseaapi.security.util.TokenUtil;
+import com.disquesea.disqueseaapi.security.util.TokenJwtUtil;
 import com.disquesea.disqueseaapi.web.rest.controllers.exception.handler.Problem;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -18,14 +19,21 @@ import static java.util.Objects.isNull;
 import static org.hibernate.internal.util.StringHelper.isEmpty;
 
 
-public class UserFilter extends OncePerRequestFilter {
+@Component
+public class JwtFilter extends OncePerRequestFilter {
+
+    private final TokenJwtUtil tokenJwtUtil;
+
+    public JwtFilter(TokenJwtUtil tokenJwtUtil) {
+        this.tokenJwtUtil = tokenJwtUtil;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
         if (!isEmpty(request.getHeader("Authorization"))) {
-            final Authentication authentication = TokenUtil.decodeToken(request);
+            final Authentication authentication = tokenJwtUtil.decodeToken(request);
 
             if (isNull(authentication)) {
                 improvingResponse(response);
