@@ -31,7 +31,7 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="name" type="varchar(30)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="amount" type="decimal(38,2)">
                 <constraints nullable="false"/>
@@ -46,7 +46,7 @@
             </column>
             <column name="status" type="ENUM('ABSENT','AVAILABLE','CRITICAL')">
             </column>
-            <column name="scale" type="ENUM('KILOGRAM','UNIT')">
+            <column name="product_scale" type="ENUM('KILOGRAM','UNIT')">
             </column>
         </createTable>
 
@@ -90,7 +90,7 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="username" type="varchar(20)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="password" type="varchar(120)">
                 <constraints nullable="false"/>
