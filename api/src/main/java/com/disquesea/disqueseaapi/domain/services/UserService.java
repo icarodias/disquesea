@@ -14,6 +14,8 @@ public class UserService {
 
     private final UserRepository repository;
 
+    private final EncoderUtil encoderUtil;
+
     public User create(User user) {
         final boolean usernameAlreadyExists = repository.findByUsername(user.getUsername()).isPresent();
 
@@ -21,7 +23,7 @@ public class UserService {
             throw new EntityIsBeingUsedException("Username already exists");
         }
 
-        final String encodedPassword = EncoderUtil.encodePassword(user.getPassword());
+        final String encodedPassword = encoderUtil.encodePassword(user.getPassword());
         user.setPassword(encodedPassword);
 
         return repository.save(user);
