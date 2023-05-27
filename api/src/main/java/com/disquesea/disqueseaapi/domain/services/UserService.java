@@ -4,6 +4,7 @@ import com.disquesea.disqueseaapi.domain.exceptions.EntityIsBeingUsedException;
 import com.disquesea.disqueseaapi.domain.exceptions.ResourceNotFoundException;
 import com.disquesea.disqueseaapi.domain.model.User;
 import com.disquesea.disqueseaapi.domain.respositories.UserRepository;
+import com.disquesea.disqueseaapi.security.util.EncoderUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class UserService {
         if (usernameAlreadyExists) {
             throw new EntityIsBeingUsedException("Username already exists");
         }
+
+        final String encodedPassword = EncoderUtil.encodePassword(user.getPassword());
+        user.setPassword(encodedPassword);
 
         return repository.save(user);
     }
