@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.utils;
+package com.disquesea.disqueseaapi.components;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

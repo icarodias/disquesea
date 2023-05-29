@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.exception.handler;
+package com.disquesea.disqueseaapi.controllers.exception.handler;
 
 import lombok.Getter;
 
@@ -12,7 +12,7 @@ public enum ProblemType {
     MESSAGE_NOT_READABLE("Message not readable", "/message-not-readable"),
     INVALID_DATA("Invalid data", "/invalid-data");
 
-    private String uri;
+    private final String uri;
 
     private final String title;
 

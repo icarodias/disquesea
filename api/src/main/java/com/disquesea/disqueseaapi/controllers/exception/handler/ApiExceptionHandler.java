@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.exception.handler;
+package com.disquesea.disqueseaapi.controllers.exception.handler;
 
 import com.disquesea.disqueseaapi.domain.exceptions.BusinessException;
 import com.disquesea.disqueseaapi.domain.exceptions.EntityIsBeingUsedException;

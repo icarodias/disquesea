@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.exception.handler;
+package com.disquesea.disqueseaapi.controllers.exception.handler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

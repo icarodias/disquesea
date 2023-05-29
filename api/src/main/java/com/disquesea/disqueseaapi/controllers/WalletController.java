@@ -1,8 +1,8 @@
-package com.disquesea.disqueseaapi.web.rest.controllers;
+package com.disquesea.disqueseaapi.controllers;
 
 import com.disquesea.disqueseaapi.domain.services.WalletService;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.WalletResponseDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.mappers.WalletMapper;
+import com.disquesea.disqueseaapi.controllers.dtos.responses.WalletResponseDTO;
+import com.disquesea.disqueseaapi.controllers.mappers.WalletMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

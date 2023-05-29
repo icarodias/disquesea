@@ -1,7 +1,7 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.mappers;
+package com.disquesea.disqueseaapi.controllers.mappers;
 
 import com.disquesea.disqueseaapi.domain.model.Wallet;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.WalletResponseDTO;
+import com.disquesea.disqueseaapi.controllers.dtos.responses.WalletResponseDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

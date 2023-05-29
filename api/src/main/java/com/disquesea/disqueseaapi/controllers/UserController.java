@@ -1,10 +1,10 @@
-package com.disquesea.disqueseaapi.web.rest.controllers;
+package com.disquesea.disqueseaapi.controllers;
 
 import com.disquesea.disqueseaapi.domain.model.User;
 import com.disquesea.disqueseaapi.domain.services.UserService;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests.CreateUserDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.UserResponseDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.mappers.UserMapper;
+import com.disquesea.disqueseaapi.controllers.dtos.requests.CreateUserDTO;
+import com.disquesea.disqueseaapi.controllers.dtos.responses.UserResponseDTO;
+import com.disquesea.disqueseaapi.controllers.mappers.UserMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,11 +1,11 @@
-package com.disquesea.disqueseaapi.web.rest.controllers;
+package com.disquesea.disqueseaapi.controllers;
 
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.domain.services.OrderService;
 import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests.CreateOrderDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.OrderResponseDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.mappers.OrderMapper;
+import com.disquesea.disqueseaapi.controllers.dtos.requests.CreateOrderDTO;
+import com.disquesea.disqueseaapi.controllers.dtos.responses.OrderResponseDTO;
+import com.disquesea.disqueseaapi.controllers.mappers.OrderMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;

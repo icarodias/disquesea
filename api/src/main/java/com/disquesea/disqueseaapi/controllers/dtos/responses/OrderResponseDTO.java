@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses;
+package com.disquesea.disqueseaapi.controllers.dtos.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

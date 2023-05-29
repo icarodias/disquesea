@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.mappers;
+package com.disquesea.disqueseaapi.controllers.mappers;
 
 
 import org.modelmapper.ModelMapper;

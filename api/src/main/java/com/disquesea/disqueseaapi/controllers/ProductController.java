@@ -1,12 +1,12 @@
-package com.disquesea.disqueseaapi.web.rest.controllers;
+package com.disquesea.disqueseaapi.controllers;
 
-import com.disquesea.disqueseaapi.web.rest.controllers.mappers.ProductMapper;
+import com.disquesea.disqueseaapi.controllers.mappers.ProductMapper;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.services.ProductService;
 import com.disquesea.disqueseaapi.specifications.dto.ProductCriteriaDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests.CreateProductDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests.UpdateProductDTO;
-import com.disquesea.disqueseaapi.web.rest.controllers.dtos.responses.ProductResponseDTO;
+import com.disquesea.disqueseaapi.controllers.dtos.requests.CreateProductDTO;
+import com.disquesea.disqueseaapi.controllers.dtos.requests.UpdateProductDTO;
+import com.disquesea.disqueseaapi.controllers.dtos.responses.ProductResponseDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;

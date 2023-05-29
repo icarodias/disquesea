@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests;
+package com.disquesea.disqueseaapi.controllers.dtos.requests;
 
 import com.disquesea.disqueseaapi.domain.model.enums.Role;
 import jakarta.validation.constraints.NotBlank;

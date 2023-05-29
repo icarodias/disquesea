@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.web.rest.controllers.dtos.requests;
+package com.disquesea.disqueseaapi.controllers.dtos.requests;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
