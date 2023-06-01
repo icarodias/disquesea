@@ -19,8 +19,6 @@ public class CreateOrderDTO {
     @NotNull
     private Boolean isSell;
 
-    private String description;
-
     @NotNull
     private long productId;
 

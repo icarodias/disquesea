@@ -20,8 +20,6 @@ public class OrderResponseDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
-    private String description;
-
     private ProductShortResponseDTO product;
 
 }
