@@ -1,19 +1,24 @@
 package com.disquesea.disqueseaapi.domain.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import com.disquesea.disqueseaapi.domain.model.enums.Category;
 import com.disquesea.disqueseaapi.domain.model.enums.Scale;
 import com.disquesea.disqueseaapi.domain.model.enums.Status;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 @Entity
 @Table(name = "tb_products")
