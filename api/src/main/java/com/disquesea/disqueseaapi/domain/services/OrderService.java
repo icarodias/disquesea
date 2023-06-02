@@ -8,7 +8,7 @@ import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.respositories.OrderRepository;
 import com.disquesea.disqueseaapi.specifications.OrderSpecification;
 import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
-import com.disquesea.disqueseaapi.utils.DateCustomUtils;
+import com.disquesea.disqueseaapi.components.DateCustomUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

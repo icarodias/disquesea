@@ -198,3 +198,14 @@ target
 .gradle
 README.html
 .exercism
+
+### FRONTEND ###
+/frontend/node_modules
+*.log*
+/frontend/.nuxt
+/frontend/.nitro
+/frontend/.cache
+/frontend/.output
+/frontend/.env
+dist
+.DS_Store

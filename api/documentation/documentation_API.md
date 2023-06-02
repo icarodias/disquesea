@@ -29,7 +29,6 @@ Esta api é responsável pelo backend da aplicação DisqueSea
         "price": 55.00,
         "isSell": true,
         "createdAt": "02/05/2023",
-        "description":"",
         "product": {
             "name": "Camarão",
             "price": 55.00,
@@ -43,7 +42,6 @@ Esta api é responsável pelo backend da aplicação DisqueSea
         "price": 150.00,
         "isSell": false,
         "createdAt": "02/05/2023",
-        "description":"Abastecendo estoque",
         "product": {
             "name": "Doce de Leite",
             "price": 15.00,
@@ -72,7 +70,6 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
     "amount": 5,
     "price": 75.00,
     "isSell": true,
-    "description": "",
     "productId": 2
 }
 ~~~
@@ -85,7 +82,6 @@ Endpoint responsável por cadastar uma venda ou um abastencimento de algum produ
     "price": 55.00,
     "isSell": true,
     "createdAt": "02/05/2023",
-    "description":"",
     "product": {
     "name": "Camarão",
     "price": 55.00,

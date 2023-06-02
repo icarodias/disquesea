@@ -1,17 +1,21 @@
 package com.disquesea.disqueseaapi.domain.model;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -32,8 +36,6 @@ public class Order {
     private LocalDate createdAt;
 
     private Boolean isSell;
-
-    private String description;
 
     @ManyToOne
     private Product product;
