@@ -1,4 +1,4 @@
-package com.disquesea.disqueseaapi.security.util;
+package com.disquesea.disqueseaapi.security.components;
 
 import com.disquesea.disqueseaapi.configuration.AppProperties;
 import com.disquesea.disqueseaapi.domain.model.User;

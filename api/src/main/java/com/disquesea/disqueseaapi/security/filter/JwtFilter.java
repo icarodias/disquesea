@@ -1,7 +1,7 @@
 package com.disquesea.disqueseaapi.security.filter;
 
-import com.disquesea.disqueseaapi.security.util.TokenJwtUtil;
 import com.disquesea.disqueseaapi.controllers.exception.handler.Problem;
+import com.disquesea.disqueseaapi.security.components.TokenJwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

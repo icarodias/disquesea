@@ -4,7 +4,8 @@ import com.disquesea.disqueseaapi.domain.exceptions.EntityIsBeingUsedException;
 import com.disquesea.disqueseaapi.domain.exceptions.ResourceNotFoundException;
 import com.disquesea.disqueseaapi.domain.model.User;
 import com.disquesea.disqueseaapi.domain.respositories.UserRepository;
-import com.disquesea.disqueseaapi.security.util.EncoderUtil;
+import com.disquesea.disqueseaapi.security.components.EncoderUtil;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User full(String userName) {
-        return repository.findByUsername(userName).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    public User full(String username) {
+        return repository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 }
