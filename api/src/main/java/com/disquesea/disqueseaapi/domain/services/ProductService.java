@@ -14,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -29,6 +31,10 @@ public class ProductService {
                 .and(ProductSpecification.catalogVisibility(criteriaDTO.getIsVisibleInCatalog()));
 
         return repository.findAll(specification, pageable);
+    }
+
+    public List<Product> findAll(Specification<Product> specification) {
+        return repository.findAll(specification);
     }
 
     public Product findById(long id) {
