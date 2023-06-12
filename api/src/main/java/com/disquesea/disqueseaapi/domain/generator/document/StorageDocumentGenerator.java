@@ -39,7 +39,7 @@ public class StorageDocumentGenerator {
                 final boolean thereIsProduct = !mapping.get(category).isEmpty();
                 if (thereIsProduct) {
                     insertTableTitle(document, category);
-                    insertProductsTable(document, mapping.get(category));
+                    insertTableProducts(document, mapping.get(category));
                 }
             });
 
@@ -58,7 +58,7 @@ public class StorageDocumentGenerator {
         document.add(tableTitle);
     }
 
-    private static void insertProductsTable(Document document, List<Product> products ) {
+    private static void insertTableProducts(Document document, List<Product> products ) {
         PdfPTable table = DocumentHelper.generateTable(3);
 
         products.forEach(product -> addProductInTable(table, product));
