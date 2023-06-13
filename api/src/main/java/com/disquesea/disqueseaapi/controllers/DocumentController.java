@@ -1,6 +1,6 @@
 package com.disquesea.disqueseaapi.controllers;
 
-import com.disquesea.disqueseaapi.components.DateCustomUtils;
+import com.disquesea.disqueseaapi.components.DateCustomComponent;
 import com.disquesea.disqueseaapi.domain.services.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -24,13 +24,25 @@ public class DocumentController {
     @GetMapping("/storage")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<byte[]> generateStorage() {
-        final String date = LocalDate.now().format(DateCustomUtils.DATE_FILE_NAME_FORMAT);
+        final String date = LocalDate.now().format(DateCustomComponent.DATE_FILE_NAME_FORMAT);
         final String headerValues = String.format("attachment; filename=\"storage-%s.pdf\"",date);
 
         return ResponseEntity.ok()
                 .contentType((MediaType.APPLICATION_OCTET_STREAM))
                 .header(HttpHeaders.CONTENT_DISPOSITION, headerValues)
                 .body(service.generateStorage());
+    }
+
+    @GetMapping("/order-history")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<byte[]> generateOrderHistory() {
+        final String date = LocalDate.now().format(DateCustomComponent.DATE_FILE_NAME_FORMAT);
+        final String headerValues = String.format("attachment; filename=\"order-history-%s.pdf\"",date);
+
+        return ResponseEntity.ok()
+                .contentType((MediaType.APPLICATION_OCTET_STREAM))
+                .header(HttpHeaders.CONTENT_DISPOSITION, headerValues)
+                .body(service.generateOrderHistory());
     }
 
 }
