@@ -4,6 +4,9 @@ import com.disquesea.disqueseaapi.domain.generator.document.TextFormatter;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPTable;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public abstract class DocumentHelper {
 
     public static Document generateDocument() {
@@ -36,6 +39,10 @@ public abstract class DocumentHelper {
         table.setWidthPercentage(100f);
 
         return table;
+    }
+
+    public static String priceFormatted(BigDecimal value) {
+        return "R$ " + value.setScale(2, RoundingMode.HALF_UP);
     }
 
 

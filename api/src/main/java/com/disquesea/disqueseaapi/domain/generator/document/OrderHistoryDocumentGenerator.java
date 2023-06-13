@@ -14,7 +14,6 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -82,7 +81,7 @@ public class OrderHistoryDocumentGenerator {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
 
-        String price = valueFormatted(order.getPrice());
+        String price = DocumentHelper.priceFormatted(order.getPrice());
         paragraph = new Paragraph(price, TextFormatter.FONT_PARAGRAPH);
         paragraph.setAlignment(Element.ALIGN_RIGHT);
         cell = new PdfPCell(paragraph);
@@ -91,7 +90,5 @@ public class OrderHistoryDocumentGenerator {
         table.addCell(cell);
     }
 
-    private static String valueFormatted(BigDecimal value) {
-        return "R$ " + value.setScale(2, RoundingMode.HALF_UP);
-    }
+
 }
