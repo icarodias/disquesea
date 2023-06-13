@@ -82,7 +82,7 @@ public class ProductController {
         return ResponseEntity.ok()
                 .contentType((MediaType.APPLICATION_OCTET_STREAM))
                 .header(HttpHeaders.CONTENT_DISPOSITION, headerValues)
-                .body(documentService.generateOrderHistory());
+                .body(documentService.generateCatalog());
     }
 
 }
