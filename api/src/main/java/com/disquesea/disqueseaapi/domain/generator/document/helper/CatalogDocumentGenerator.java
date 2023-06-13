@@ -4,10 +4,7 @@ import com.disquesea.disqueseaapi.components.DateCustom;
 import com.disquesea.disqueseaapi.domain.generator.document.TextFormatter;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.model.enums.Category;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Element;
-import com.lowagie.text.Paragraph;
+import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
@@ -31,7 +28,7 @@ public class CatalogDocumentGenerator {
             DocumentHelper.insertLogo(document);
 
             final String date = LocalDate.now().format(DateCustom.DATE_FORMAT);
-            final String title = String.format("Estoque - %s", date);
+            final String title = String.format("Catálogo - %s", date);
             DocumentHelper.insertTitle(document, title);
 
             mapping.keySet().forEach( category -> {
@@ -60,7 +57,22 @@ public class CatalogDocumentGenerator {
         PdfPTable table = DocumentHelper.generateTable(3);
 
         products.forEach(product -> addProductInTable(table, product));
+        insertTableFooter(table);
+
         document.add(table);
+    }
+
+    private static void insertTableFooter(PdfPTable table) {
+
+        Paragraph content = new Paragraph("* preços sujeitos a alterações", TextFormatter.FONT_FOOTER);
+        content.setAlignment(Element.ALIGN_RIGHT);
+        final PdfPCell cell = new PdfPCell();
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.addElement(content);
+
+        table.addCell(emptyCell());
+        table.addCell(emptyCell());
+        table.addCell(cell);
     }
 
     private static void addProductInTable(PdfPTable table, Product product) {
@@ -84,5 +96,12 @@ public class CatalogDocumentGenerator {
         cell.setPadding(4f);
         cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         table.addCell(cell);
+    }
+
+    private static PdfPCell emptyCell() {
+        final PdfPCell cell = new PdfPCell();
+        cell.setBorder(Rectangle.NO_BORDER);
+
+        return cell;
     }
 }

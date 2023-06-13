@@ -2,6 +2,7 @@ package com.disquesea.disqueseaapi.domain.services;
 
 import com.disquesea.disqueseaapi.domain.generator.document.OrderHistoryDocumentGenerator;
 import com.disquesea.disqueseaapi.domain.generator.document.StorageDocumentGenerator;
+import com.disquesea.disqueseaapi.domain.generator.document.helper.CatalogDocumentGenerator;
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.model.enums.Category;
@@ -47,7 +48,7 @@ public class DocumentService {
                 }
         );
 
-        return StorageDocumentGenerator.getDocumentInByteArray(mapping);
+        return CatalogDocumentGenerator.getDocumentInByteArray(mapping);
     }
 
     public byte[] generateOrderHistory() {
@@ -56,6 +57,6 @@ public class DocumentService {
     }
 
     private Specification<Product> filterByCategoryAndCatalogVisible(Category category){
-      return Specification.where(categoryIs(category)).and(catalogVisibility(true));
+        return Specification.where(categoryIs(category)).and(catalogVisibility(true));
     }
 }

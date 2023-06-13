@@ -16,6 +16,8 @@ public abstract class TextFormatter{
 
     public final static Font FONT_PARAGRAPH = setFont(FontFactory.HELVETICA, 12, PRIMARY_COLOR);
 
+    public final static Font FONT_FOOTER = setFont(FontFactory.HELVETICA, 8, PRIMARY_COLOR);
+
     public static Font setFont(String name, Integer size, Color color){
         Font font = FontFactory.getFont(name);
         font.setSize(size);
