@@ -19,17 +19,17 @@ create table tb_products (
 
 create table tb_orders (
 	id bigint not null auto_increment,
-	name varchar(30) not null unique,
 	amount decimal(38,2) not null,
 	price decimal(38,2) not null,
     is_sell bit not null,
+    created_at date not null,
     product_id bigint not null,
 
 	primary key (id),
     constraint fk_order_product foreign key (product_id) references tb_products (id)
 ) engine = InnoDB;
 
--- changeset icaro-dias:create-table-whalet
+-- changeset icaro-dias:create-table-wallet
 
 create table tb_wallet (
 	id bigint not null auto_increment,
