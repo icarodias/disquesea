@@ -1,6 +1,8 @@
 package com.disquesea.disqueseaapi.controllers;
 
+import com.disquesea.disqueseaapi.components.DateCustom;
 import com.disquesea.disqueseaapi.domain.model.Order;
+import com.disquesea.disqueseaapi.domain.services.DocumentService;
 import com.disquesea.disqueseaapi.domain.services.OrderService;
 import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
 import com.disquesea.disqueseaapi.controllers.dtos.requests.CreateOrderDTO;
@@ -11,8 +13,13 @@ import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/orders")
@@ -20,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService service;
+
+    private final DocumentService documentService;
 
     private final OrderMapper mapper;
 
@@ -41,6 +50,18 @@ public class OrderController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void clear() {
         service.deleteAll();
+    }
+
+    @GetMapping("/download")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<byte[]> generateOrderHistory() {
+        final String date = LocalDate.now().format(DateCustom.DATE_FILE_NAME_FORMAT);
+        final String headerValues = String.format("attachment; filename=\"order-history-%s.pdf\"",date);
+
+        return ResponseEntity.ok()
+                .contentType((MediaType.APPLICATION_OCTET_STREAM))
+                .header(HttpHeaders.CONTENT_DISPOSITION, headerValues)
+                .body(documentService.generateOrderHistory());
     }
 
 }

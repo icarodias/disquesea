@@ -5,11 +5,17 @@ import com.disquesea.disqueseaapi.domain.generator.document.StorageDocumentGener
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.model.enums.Category;
-import com.disquesea.disqueseaapi.specifications.ProductSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.disquesea.disqueseaapi.specifications.ProductSpecification.catalogVisibility;
+import static com.disquesea.disqueseaapi.specifications.ProductSpecification.categoryIs;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +30,21 @@ public class DocumentService {
         List<Category> categories = Arrays.stream(Category.values()).toList();
 
         categories.forEach(
-                category -> mapping.put(category, productService.findAll(ProductSpecification.categoryIs(category)))
+                category -> mapping.put(category, productService.findAll(categoryIs(category)))
+        );
+
+        return StorageDocumentGenerator.getDocumentInByteArray(mapping);
+    }
+
+    public byte[] generateCatalog() {
+        Map<Category,List<Product>> mapping = new HashMap<>();
+        List<Category> categories = Arrays.stream(Category.values()).toList();
+
+        categories.forEach(
+                category -> {
+                    Specification<Product> specification = filterByCategoryAndCatalogVisible(category);
+                    mapping.put(category, productService.findAll(specification));
+                }
         );
 
         return StorageDocumentGenerator.getDocumentInByteArray(mapping);
@@ -33,5 +53,9 @@ public class DocumentService {
     public byte[] generateOrderHistory() {
         List<Order> orders = orderService.findAll();
         return OrderHistoryDocumentGenerator.getDocumentInByteArray(orders);
+    }
+
+    private Specification<Product> filterByCategoryAndCatalogVisible(Category category){
+      return Specification.where(categoryIs(category)).and(catalogVisibility(true));
     }
 }
