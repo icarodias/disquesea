@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;
 
-public class OrderSpecification {
+public abstract class OrderSpecification {
 
     public static Specification<Order> sellIs(Boolean isSell) {
         return AbstractSpecification.attributeBooleanIs(isSell, "isSell");

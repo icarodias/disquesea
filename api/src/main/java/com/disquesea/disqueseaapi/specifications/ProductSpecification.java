@@ -6,7 +6,7 @@ import com.disquesea.disqueseaapi.domain.model.enums.Scale;
 import com.disquesea.disqueseaapi.domain.model.enums.Status;
 import org.springframework.data.jpa.domain.Specification;
 
-public class ProductSpecification {
+public abstract class ProductSpecification {
 
     public static Specification<Product> nameContains(String name) {
         return AbstractSpecification.attributeContains(name, "name");
