@@ -2,7 +2,7 @@ package com.disquesea.disqueseaapi.domain.model;
 
 import java.math.BigDecimal;
 
-import com.disquesea.disqueseaapi.components.RoundCustomComponent;
+import com.disquesea.disqueseaapi.components.RoundCustom;
 import com.disquesea.disqueseaapi.domain.model.enums.Category;
 import com.disquesea.disqueseaapi.domain.model.enums.Scale;
 import com.disquesea.disqueseaapi.domain.model.enums.Status;
@@ -51,17 +51,17 @@ public class Product {
     private Status status;
 
     public BigDecimal getAmount() {
-        return RoundCustomComponent.roundingAmount(amount, scale);
+        return RoundCustom.roundingAmount(amount, scale);
     }
 
     public BigDecimal getPrice() {
-        return RoundCustomComponent.roundPrice(amount);
+        return RoundCustom.roundPrice(amount);
     }
 
     public void changeAmount(BigDecimal value, boolean isReduction) {
         BigDecimal finalAmount = (isReduction) ? this.amount.subtract(value) : this.amount.add(value);
 
-        finalAmount = RoundCustomComponent.roundingAmount(finalAmount, scale);
+        finalAmount = RoundCustom.roundingAmount(finalAmount, scale);
 
         this.amount = finalAmount;
         updateStatus();

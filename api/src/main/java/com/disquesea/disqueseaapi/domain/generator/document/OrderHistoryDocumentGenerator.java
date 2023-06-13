@@ -1,7 +1,7 @@
 package com.disquesea.disqueseaapi.domain.generator.document;
 
-import com.disquesea.disqueseaapi.components.RoundCustomComponent;
-import com.disquesea.disqueseaapi.components.DateCustomComponent;
+import com.disquesea.disqueseaapi.components.RoundCustom;
+import com.disquesea.disqueseaapi.components.DateCustom;
 import com.disquesea.disqueseaapi.domain.generator.document.helper.DocumentHelper;
 import com.disquesea.disqueseaapi.domain.model.Order;
 import com.lowagie.text.Document;
@@ -32,7 +32,7 @@ public class OrderHistoryDocumentGenerator {
             document.open();
             DocumentHelper.insertLogo(document);
 
-            final String date = LocalDate.now().format(DateCustomComponent.DATE_FORMAT);
+            final String date = LocalDate.now().format(DateCustom.DATE_FORMAT);
             final String title = String.format("Histórico de Pedidos - %s", date);
             DocumentHelper.insertTitle(document, title);
 
@@ -67,14 +67,14 @@ public class OrderHistoryDocumentGenerator {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
 
-        paragraph = new Paragraph(order.getCreatedAt().format(DateCustomComponent.DATE_FORMAT),
+        paragraph = new Paragraph(order.getCreatedAt().format(DateCustom.DATE_FORMAT),
                 TextFormatter.FONT_PARAGRAPH);
         cell = new PdfPCell(new Paragraph(paragraph));
         cell.setPadding(4f);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
 
-        BigDecimal amount = RoundCustomComponent.roundingAmount(order.getAmount(), order.getProduct().getScale());
+        BigDecimal amount = RoundCustom.roundingAmount(order.getAmount(), order.getProduct().getScale());
         paragraph = new Paragraph(amount + " " + order.getProduct().getScale().getDescription(),
                 TextFormatter.FONT_PARAGRAPH);
         cell = new PdfPCell(new Paragraph(paragraph));

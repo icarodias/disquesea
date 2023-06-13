@@ -5,7 +5,7 @@ import com.disquesea.disqueseaapi.domain.model.enums.Scale;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public abstract class RoundCustomComponent {
+public abstract class RoundCustom {
 
     public static BigDecimal roundingAmount(BigDecimal value, Scale scale) {
         final boolean isKilogramScale = scale.equals(Scale.KILOGRAM);

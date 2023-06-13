@@ -1,8 +1,8 @@
 package com.disquesea.disqueseaapi.domain.services;
 
 
-import com.disquesea.disqueseaapi.components.DateCustomComponent;
-import com.disquesea.disqueseaapi.components.RoundCustomComponent;
+import com.disquesea.disqueseaapi.components.DateCustom;
+import com.disquesea.disqueseaapi.components.RoundCustom;
 import com.disquesea.disqueseaapi.domain.exceptions.BusinessException;
 import com.disquesea.disqueseaapi.domain.exceptions.ResourceNotFoundException;
 import com.disquesea.disqueseaapi.domain.model.Order;
@@ -34,9 +34,9 @@ public class OrderService {
     private final WalletService walletService;
 
     public Page<Order> findAll(OrderCriteriaDTO criteriaDTO, Pageable pageable) {
-        final LocalDate fromDate = DateCustomComponent.fromString(criteriaDTO.getFromDate());
+        final LocalDate fromDate = DateCustom.fromString(criteriaDTO.getFromDate());
 
-        final LocalDate toDate = DateCustomComponent.fromString(criteriaDTO.getToDate());
+        final LocalDate toDate = DateCustom.fromString(criteriaDTO.getToDate());
 
         Specification<Order> specification = Specification
                 .where(OrderSpecification.sellIs(criteriaDTO.getIsSell()))
@@ -97,13 +97,13 @@ public class OrderService {
     private void calculatePrice(Order order, Product product) {
         if (isNull(order.getPrice())) {
             BigDecimal price = order.getAmount().multiply(product.getPrice());
-            price = RoundCustomComponent.roundPrice(price);
+            price = RoundCustom.roundPrice(price);
             order.setPrice(price);
         }
     }
 
     private void roundingAmount(Order order, Product product) {
-        final BigDecimal amount = RoundCustomComponent.roundingAmount(order.getAmount(), product.getScale());
+        final BigDecimal amount = RoundCustom.roundingAmount(order.getAmount(), product.getScale());
         order.setAmount(amount);
     }
 

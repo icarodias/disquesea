@@ -1,6 +1,6 @@
 package com.disquesea.disqueseaapi.domain.generator.document;
 
-import com.disquesea.disqueseaapi.components.DateCustomComponent;
+import com.disquesea.disqueseaapi.components.DateCustom;
 import com.disquesea.disqueseaapi.domain.generator.document.helper.DocumentHelper;
 import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.model.enums.Category;
@@ -31,7 +31,7 @@ public class StorageDocumentGenerator {
             document.open();
             DocumentHelper.insertLogo(document);
 
-            final String date = LocalDate.now().format(DateCustomComponent.DATE_FORMAT);
+            final String date = LocalDate.now().format(DateCustom.DATE_FORMAT);
             final String title = String.format("Estoque - %s", date);
             DocumentHelper.insertTitle(document, title);
 

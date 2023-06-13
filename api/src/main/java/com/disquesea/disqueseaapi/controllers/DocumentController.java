@@ -1,6 +1,6 @@
 package com.disquesea.disqueseaapi.controllers;
 
-import com.disquesea.disqueseaapi.components.DateCustomComponent;
+import com.disquesea.disqueseaapi.components.DateCustom;
 import com.disquesea.disqueseaapi.domain.services.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -24,7 +24,7 @@ public class DocumentController {
     @GetMapping("/storage")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<byte[]> generateStorage() {
-        final String date = LocalDate.now().format(DateCustomComponent.DATE_FILE_NAME_FORMAT);
+        final String date = LocalDate.now().format(DateCustom.DATE_FILE_NAME_FORMAT);
         final String headerValues = String.format("attachment; filename=\"storage-%s.pdf\"",date);
 
         return ResponseEntity.ok()
@@ -36,7 +36,7 @@ public class DocumentController {
     @GetMapping("/order-history")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<byte[]> generateOrderHistory() {
-        final String date = LocalDate.now().format(DateCustomComponent.DATE_FILE_NAME_FORMAT);
+        final String date = LocalDate.now().format(DateCustom.DATE_FILE_NAME_FORMAT);
         final String headerValues = String.format("attachment; filename=\"order-history-%s.pdf\"",date);
 
         return ResponseEntity.ok()
