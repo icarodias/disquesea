@@ -1,6 +1,8 @@
 package com.disquesea.disqueseaapi.domain.services;
 
 
+import com.disquesea.disqueseaapi.components.DateCustom;
+import com.disquesea.disqueseaapi.components.RoundCustom;
 import com.disquesea.disqueseaapi.domain.exceptions.BusinessException;
 import com.disquesea.disqueseaapi.domain.exceptions.ResourceNotFoundException;
 import com.disquesea.disqueseaapi.domain.model.Order;
@@ -8,7 +10,6 @@ import com.disquesea.disqueseaapi.domain.model.Product;
 import com.disquesea.disqueseaapi.domain.respositories.OrderRepository;
 import com.disquesea.disqueseaapi.specifications.OrderSpecification;
 import com.disquesea.disqueseaapi.specifications.dto.OrderCriteriaDTO;
-import com.disquesea.disqueseaapi.components.DateCustomUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,8 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.List;
 
 import static java.util.Objects.isNull;
 
@@ -33,9 +34,9 @@ public class OrderService {
     private final WalletService walletService;
 
     public Page<Order> findAll(OrderCriteriaDTO criteriaDTO, Pageable pageable) {
-        final LocalDate fromDate = DateCustomUtils.fromString(criteriaDTO.getFromDate());
+        final LocalDate fromDate = DateCustom.fromString(criteriaDTO.getFromDate());
 
-        final LocalDate toDate = DateCustomUtils.fromString(criteriaDTO.getToDate());
+        final LocalDate toDate = DateCustom.fromString(criteriaDTO.getToDate());
 
         Specification<Order> specification = Specification
                 .where(OrderSpecification.sellIs(criteriaDTO.getIsSell()))
@@ -47,6 +48,10 @@ public class OrderService {
         return repository.findAll(specification, pageable);
     }
 
+    public List<Order> findAll() {
+        return repository.findAll();
+    }
+
     @Transactional
     public Order create(Order order) {
         final boolean isSell = order.getIsSell();
@@ -55,6 +60,7 @@ public class OrderService {
 
         checkOrderIntegrity(order, product);
 
+        roundingAmount(order, product);
         order.setCreatedAt(LocalDate.now());
         calculatePrice(order, product);
 
@@ -78,7 +84,6 @@ public class OrderService {
         if (!isBuy  && hasNotProductEnough) {
             throw new BusinessException("Not enough product");
         }
-
     }
 
     private Product getOrderProduct(Order order) {
@@ -91,11 +96,15 @@ public class OrderService {
 
     private void calculatePrice(Order order, Product product) {
         if (isNull(order.getPrice())) {
-            final BigDecimal price = order.getAmount().multiply(product.getPrice())
-                    .setScale(2, RoundingMode.HALF_UP);
-
+            BigDecimal price = order.getAmount().multiply(product.getPrice());
+            price = RoundCustom.roundPrice(price);
             order.setPrice(price);
         }
+    }
+
+    private void roundingAmount(Order order, Product product) {
+        final BigDecimal amount = RoundCustom.roundingAmount(order.getAmount(), product.getScale());
+        order.setAmount(amount);
     }
 
     private void setProductAfterUpdate(Order order, Product product, boolean isSell) {
@@ -117,4 +126,5 @@ public class OrderService {
     public void deleteAll() {
         repository.deleteAllOrders();
     }
+
 }
