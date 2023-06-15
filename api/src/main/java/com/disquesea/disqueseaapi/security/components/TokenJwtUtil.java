@@ -1,6 +1,6 @@
 package com.disquesea.disqueseaapi.security.components;
 
-import com.disquesea.disqueseaapi.configuration.AppProperties;
+import com.disquesea.disqueseaapi.configuration.properties.AppProperties;
 import com.disquesea.disqueseaapi.domain.model.User;
 import com.disquesea.disqueseaapi.security.AuthToken;
 import io.jsonwebtoken.Claims;
